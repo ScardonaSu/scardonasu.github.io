@@ -1,0 +1,192 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#faf5ed"><title>Colombia Eléctrica · 2300 — Santiago Cardona</title><meta name="description" content="A UX/UI case study by Santiago Cardona: the player journey, interface mockups and developer handoff for the Colombia Eléctrica PC game."><meta property="og:title" content="Colombia Eléctrica · 2300 — UX/UI case study"><meta property="og:description" content="From login to launch: designing a space-themed game interface."><meta property="og:image" content="https://scardonasu.github.io/ce-combat.jpg"><meta property="og:type" content="article"><link rel="canonical" href="https://scardonasu.github.io/colombia-electrica.html"><style>
+:root{--paper:#faf5ed;--ink:#29211c;--muted:#63564c;--line:#e2d6c9;--green:#963d16;--lime:#f5c796;--soft:#f0e6da;--radius:24px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:110px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid #b54c1d;outline-offset:6px}
+::selection{background:var(--lime)}
+.wrap{max-width:1360px;margin:auto;padding:0 64px}
+.skip{position:fixed;top:-100px;left:20px;background:var(--ink);color:white;padding:16px;z-index:20}
+.skip:focus{top:12px}
+.nav{display:flex;align-items:center;justify-content:space-between;height:108px;border-bottom:1px solid var(--line)}
+.wordmark{font-weight:600;font-size:20px;letter-spacing:-.8px;display:flex;align-items:center;gap:12px}
+.monogram{display:grid;place-items:center;background:var(--green);color:var(--paper);border-radius:50%;width:34px;height:34px;font-size:22px;letter-spacing:-2px;padding-right:2px}
+.nav-links{display:flex;gap:32px;align-items:center;font-size:14px}
+.nav-links>a:not(.nav-contact){position:relative}
+.nav-links>a:not(.nav-contact):after{content:'';position:absolute;bottom:-7px;left:0;right:100%;height:1px;background:var(--green);transition:right .2s}
+.nav-links>a:hover:after{right:0}
+.nav-contact{border:1px solid #b9a593;border-radius:30px;padding:12px 18px;display:flex;gap:24px;align-items:center}
+.nav-contact:hover{background:var(--green);color:white;border-color:var(--green)}
+.eyebrow{font-size:11px;letter-spacing:1.8px;text-transform:uppercase;font-weight:600}
+.hero{padding:76px 0 70px;display:grid;grid-template-columns:1.3fr 1fr;align-items:center;gap:50px}
+.hero-kicker{display:flex;align-items:center;gap:10px;color:var(--green);margin:0 0 27px}
+.dot{width:7px;height:7px;display:inline-block;background:#c35b26;border-radius:50%}
+h1{font-size:clamp(52px,5.5vw,78px);line-height:1.03;font-weight:400;letter-spacing:-4.3px;margin:0 0 28px;max-width:710px}
+h1 em{font-family:Georgia,'Times New Roman',serif;font-weight:400;color:var(--ink);letter-spacing:-4px}
+.hero-description{font-size:16px;line-height:1.75;max-width:410px;color:var(--muted);margin:0 0 30px}
+.hero-description strong{font-weight:500;color:var(--ink)}
+.actions{display:flex;align-items:center;gap:28px}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:24px;padding:16px 23px;border-radius:30px;background:var(--green);color:white;font-size:13px;min-height:48px;transition:background .2s,transform .2s}
+.button:hover{background:#743013;transform:translateY(-2px)}
+.text-link{font-size:13px;display:inline-flex;align-items:center;gap:18px}
+.text-link:hover{text-decoration:underline;text-underline-offset:5px}
+.hero-foot{display:flex;align-items:center;justify-content:space-between;padding-top:44px;color:var(--muted);font-size:11px;letter-spacing:.2px}
+.hero-art{position:relative;height:450px;display:flex;align-items:center;justify-content:center}
+.art-field{position:absolute;inset:8px 0 8px 0;border-radius:160px 160px 30px 30px;background:#e9ecdf;overflow:hidden}
+.art-field:before{content:'';position:absolute;inset:0;background-image:radial-gradient(#9aab85 1px,transparent 1px);background-size:18px 18px;opacity:.26}
+.orb{width:300px;height:300px;border:1px solid #b2bea2;border-radius:50%;position:absolute;left:50%;top:45%;transform:translate(-50%,-50%)}
+.orb:after{content:'';position:absolute;inset:28px;border:1px solid #c5cdbb;border-radius:50%}
+.art-label{position:absolute;bottom:29px;left:0;right:0;text-align:center;font:10px monospace;letter-spacing:1.3px;color:#60734f}
+.canvas{position:relative;width:302px;background:#fffef9;border:1px solid #d2d7c9;border-radius:13px;padding:18px;box-shadow:0 28px 50px -25px #34452b50;transform:rotate(-7deg);transition:transform .4s}
+.hero-art:hover .canvas{transform:rotate(-3deg) translateY(-5px)}
+.canvas-bar{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e8eae1;padding-bottom:15px;margin-bottom:20px}
+.mini-brand{font-size:12px;letter-spacing:-.4px;font-weight:600}
+.mini-menu{display:flex;gap:3px}
+.mini-menu i{display:block;width:4px;height:4px;border-radius:50%;background:#c6cbbb}
+.mini-eyebrow{font-size:8px;color:#727969;letter-spacing:1.2px}
+.mini-title{font-size:31px;line-height:1.08;letter-spacing:-1.5px;margin:10px 0 16px;max-width:170px}
+.mini-blocks{display:grid;grid-template-columns:1.1fr 1fr;gap:10px}
+.mini-tile{height:83px;background:#dce7bf;border-radius:8px;position:relative;overflow:hidden}
+.mini-tile:first-child:before{content:'';position:absolute;width:70px;height:70px;border:18px solid #61774a;border-radius:50%;top:16px;left:25px}
+.mini-tile:last-child{background:#e9e9df}
+.mini-tile:last-child:before{content:'';position:absolute;width:58px;height:58px;background:#abae9c;border-radius:12px;transform:rotate(45deg);left:27px;top:30px}
+.mini-lines{display:flex;gap:10px;margin:14px 0 3px}
+.mini-lines span{width:58%;height:4px;background:#d8dccf;border-radius:3px}
+.mini-lines span:last-child{width:22%}
+.float-tag{position:absolute;display:flex;align-items:center;gap:9px;background:var(--green);color:white;border-radius:8px;padding:12px 15px;font-size:11px;box-shadow:0 8px 22px #173b2020;right:0;top:85px;transform:rotate(5deg)}
+.cursor-tag{position:absolute;left:-2px;bottom:78px;font-size:11px;background:#f5c796;padding:11px 15px;border:1px solid #aabd82;border-radius:7px;transform:rotate(-4deg);box-shadow:0 8px 15px #29422a12}
+.cursor-tag svg{position:absolute;top:-23px;left:-11px}
+.discipline-strip{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:23px 0;font-size:11px;color:var(--muted)}
+.discipline-strip span{display:flex;align-items:center;gap:12px}
+.asterisk{font-size:20px;color:#a56842;line-height:10px}
+.section{padding:90px 0;border-bottom:1px solid var(--line)}
+.section-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:34px;gap:30px}
+.section-number{color:#705b4b;margin:0 0 16px}
+.section h2{font-size:42px;font-weight:400;letter-spacing:-1.8px;margin:0;line-height:1.12}
+.section-head>p{color:var(--muted);font-size:14px;line-height:1.7;max-width:285px;margin:26px 0 0}
+.work-preview{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;min-height:330px}
+.work-art{position:relative;overflow:hidden;background:#f0e1d0;min-height:310px;display:grid;place-items:center}
+.work-art:before,.work-art:after{content:'';position:absolute;width:260px;height:260px;border:1px solid #c99b77;border-radius:50%;transform:rotate(-30deg) scaleY(.55)}
+.work-art:after{transform:rotate(35deg) scaleY(.55)}
+.work-orb{height:120px;width:120px;position:relative;background:radial-gradient(circle at 30% 25%,#ffe0b2,#c78045 65%,#80401f);border-radius:50%;box-shadow:18px 26px 45px #81512626}
+.orbit-dot{position:absolute;width:13px;height:13px;background:#995025;border-radius:50%;left:26%;top:40%}
+.work-art-caption{position:absolute;left:24px;bottom:22px;font:10px monospace;letter-spacing:1px;color:#765037}
+.work-info{padding:42px 40px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.status{display:inline-flex;gap:7px;align-items:center;font-size:10px;border:1px solid #ddbea3;border-radius:20px;padding:7px 10px;color:#85451f;background:#faecdc}
+.status .dot{width:5px;height:5px}
+.work-info h3{font-size:30px;font-weight:400;letter-spacing:-1px;margin:23px 0 12px}
+.work-info p{color:var(--muted);font-size:14px;line-height:1.75;max-width:330px;margin:0}
+.project-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:24px}
+.project-tags span{font-size:10px;border:1px solid var(--line);border-radius:15px;padding:6px 9px;color:#755943}
+.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:90px}
+.about-copy>p{font-size:20px;line-height:1.65;letter-spacing:-.35px;margin:0 0 20px}
+.about-copy>p.secondary{font-size:15px;line-height:1.8;color:var(--muted);letter-spacing:0}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:35px;padding-top:25px;border-top:1px solid var(--line)}
+.facts dt{font-size:10px;letter-spacing:1.2px;color:var(--muted);text-transform:uppercase;margin-bottom:9px}
+.facts dd{font-size:13px;margin:0;line-height:1.6}
+.capability-list{margin-top:40px}
+.capability{display:grid;grid-template-columns:45px 1fr 1fr;gap:25px;align-items:start;border-top:1px solid var(--line);padding:25px 0}
+.capability:last-child{border-bottom:1px solid var(--line)}
+.capability .num{font:11px monospace;color:#765c49;padding-top:5px}
+.capability h3{font-size:20px;letter-spacing:-.5px;font-weight:400;margin:0}
+.capability p{font-size:14px;line-height:1.7;color:var(--muted);margin:0}
+.contact-section{padding:80px 0 65px;display:flex;justify-content:space-between;align-items:center;gap:40px}
+.contact-section h2{font-size:56px;line-height:1.08;font-weight:400;letter-spacing:-2.8px;margin:18px 0}
+.contact-section h2 em{font-family:Georgia,serif;color:var(--ink)}
+.contact-section p{font-size:14px;color:var(--muted);line-height:1.7;max-width:370px}
+.contact-actions{display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+.contact-actions .button{padding:18px 25px}
+.email-display{font-size:12px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:28px 0;display:flex;justify-content:space-between;gap:20px;font-size:11px;color:var(--muted)}
+.socials{display:flex;gap:23px}
+.socials a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
+.note{font-size:11px;line-height:1.7;color:var(--muted);margin:16px 0 0}
+.arrow{font-size:17px}
+#contact,#about,#work{scroll-margin-top:30px}
+
+@media(min-width:1450px){.wrap{padding:0 75px}
+.hero{padding:96px 0 80px}
+.hero-art{height:480px}
+}
+
+@media(max-width:1000px){.wrap{padding:0 36px}
+.hero{gap:28px;grid-template-columns:1.15fr 1fr}
+h1{font-size:60px;letter-spacing:-3px}
+.hero-art{height:410px}
+.canvas{width:260px}
+.float-tag{right:-10px}
+.cursor-tag{left:-12px}
+.about-grid{gap:55px}
+.work-info{padding:30px}
+.contact-section h2{font-size:48px}
+}
+
+@media(max-width:720px){html{scroll-padding-top:40px}
+.wrap{padding:0 24px}
+.nav{height:86px}
+.wordmark{font-size:16px}
+.nav-links{gap:20px;font-size:12px}
+.nav-contact{padding:10px 12px;gap:10px}
+.nav-links .desktop-only{display:none}
+.hero{grid-template-columns:1fr;padding:54px 0 35px;gap:28px}
+h1{font-size:clamp(49px,10vw,70px);letter-spacing:-2.7px;max-width:590px}
+h1 em{letter-spacing:-2.7px}
+.hero-kicker{font-size:9px}
+.hero-description{font-size:15px;max-width:450px}
+.hero-foot{padding-top:32px}
+.hero-art{height:370px;max-width:430px;width:100%;margin:0 auto}
+.art-field{inset:5px 14px}
+.canvas{width:260px}
+.float-tag{right:10px;top:63px}
+.cursor-tag{left:8px;bottom:48px}
+.orb{width:250px;height:250px}
+.art-label{bottom:22px}
+.discipline-strip{justify-content:flex-start;gap:20px 26px;font-size:10px;padding:21px 0}
+.section{padding:62px 0}
+.section h2{font-size:35px}
+.section-head{display:block}
+.section-head>p{margin-top:18px;max-width:420px}
+.work-preview{grid-template-columns:1fr}
+.work-art{min-height:260px}
+.work-info{padding:30px}
+.work-info h3{font-size:28px}
+.about-grid{grid-template-columns:1fr;gap:30px}
+.about-copy>p{font-size:19px}
+.capability{grid-template-columns:25px 1fr;gap:15px}
+.capability p{grid-column:2}
+.capability h3{font-size:21px}
+.contact-section{padding:60px 0;display:block}
+.contact-section h2{font-size:45px;letter-spacing:-2px}
+.contact-actions{margin-top:30px}
+.socials{gap:16px}
+footer{flex-wrap:wrap;line-height:1.6}
+.email-display{overflow-wrap:anywhere}
+}
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}
+*,*:before,*:after{transition:none!important;animation:none!important}
+}
+
+
+.hero-portrait{margin:0;position:relative;width:100%;height:450px;border-radius:160px 160px 24px 24px;overflow:hidden;background:#20221f;isolation:isolate}
+.hero-portrait img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
+.hero-portrait:after{content:'';position:absolute;inset:60% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.7));pointer-events:none}
+.hero-portrait figcaption{position:absolute;left:26px;right:26px;bottom:24px;z-index:1;display:flex;justify-content:space-between;gap:12px;color:#faf5ed;font:10px Arial,sans-serif;letter-spacing:1.4px}
+@media(min-width:1450px){.hero-portrait{height:480px}}
+@media(max-width:1000px){.hero-portrait{height:410px}}
+@media(max-width:720px){.hero-portrait{height:400px;max-width:430px;margin:0 auto;border-radius:120px 120px 24px 24px}.hero-portrait img{object-position:50% 60%}.hero-portrait figcaption{font-size:9px;letter-spacing:1px;left:22px;right:22px}}
+
+.case-intro{padding:44px 0 48px}.back-link{font-size:12px;color:var(--muted);display:inline-flex;gap:12px;align-items:center;margin-bottom:55px}.back-link:hover{text-decoration:underline;text-underline-offset:5px}.case-label{color:var(--green);margin-bottom:22px}.case-intro h1{font-size:clamp(56px,6.2vw,88px);max-width:1000px;line-height:1.03;margin:0 0 25px}.case-deck{font-size:20px;line-height:1.6;color:var(--muted);max-width:680px;letter-spacing:-.3px}.case-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin:40px 0 0;padding:25px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.case-meta dt{font-size:10px;text-transform:uppercase;letter-spacing:1.4px;color:var(--muted);margin-bottom:10px}.case-meta dd{font-size:13px;margin:0;line-height:1.6}.case-cover{margin:0 0 44px;background:#031c30;border-radius:24px;overflow:hidden}.case-cover img{display:block;width:100%;height:auto}.case-cover figcaption{display:flex;justify-content:space-between;gap:20px;color:#c3d7e5;font-size:11px;padding:17px 24px;line-height:1.6}.case-nav{position:sticky;top:0;z-index:5;display:flex;gap:26px;padding:21px 0;background:var(--paper);border-bottom:1px solid var(--line);flex-wrap:wrap;font-size:12px}.case-nav a{color:var(--muted)}.case-nav a:hover{color:var(--green);text-decoration:underline;text-underline-offset:5px}.chapter{padding:76px 0;border-bottom:1px solid var(--line);scroll-margin-top:75px}.chapter-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:80px}.chapter h2{font-size:40px;font-weight:400;line-height:1.12;letter-spacing:-1.5px;margin:16px 0 20px}.chapter h3{font-weight:400;font-size:22px;letter-spacing:-.5px;margin:0 0 14px}.case-body p{font-size:16px;line-height:1.85;color:var(--muted);margin:0 0 20px}.case-body p.lead{font-size:21px;color:var(--ink);line-height:1.65;letter-spacing:-.3px}.scope-note{border-left:2px solid var(--green);padding:1px 0 1px 20px;margin-top:28px;font-size:13px;line-height:1.8;color:var(--muted)}.journey{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;list-style:none;padding:0;margin:34px 0 0}.journey li{padding:24px 18px;background:#f0e5d8;border:1px solid var(--line);border-radius:12px;position:relative}.journey .step-number{font:11px monospace;color:var(--green)}.journey h3{font-size:17px;margin:18px 0 10px}.journey p{font-size:12px;color:var(--muted);line-height:1.7;margin:0}.journey li:not(:last-child):after{content:'→';position:absolute;right:-12px;top:24px;z-index:1;color:var(--green);background:var(--paper);border-radius:50%;width:20px;text-align:center}.screen-layout{display:grid;grid-template-columns:.6fr 1.4fr;gap:50px;align-items:start}.screen-copy .eyebrow{color:var(--green)}.screen-copy h2{font-size:33px}.screen-copy p{color:var(--muted);font-size:14px;line-height:1.8}.screen-figure{margin:0;min-width:0}.screen-figure a{display:block;border-radius:16px;overflow:hidden;background:#071622;border:1px solid #1c3444}.screen-figure img{display:block;width:100%;height:auto}.screen-figure a:hover{outline:2px solid var(--green);outline-offset:4px}.screen-figure figcaption{color:var(--muted);font-size:11px;line-height:1.7;margin-top:12px}.observations{list-style:none;padding:0;margin:23px 0 0;border-top:1px solid var(--line)}.observations li{font-size:12px;line-height:1.75;color:var(--muted);border-bottom:1px solid var(--line);padding:12px 0}.observations strong{display:block;font-weight:600;color:var(--ink);font-size:12px}.loading-note{padding:18px 20px;border-radius:10px;background:#f0e5d8;font-size:12px;line-height:1.8;color:var(--muted);margin-top:24px}.figma-section{background:#eee3d6;border-radius:24px;padding:38px;margin-top:35px}.figma-section img{display:block;width:100%;height:auto;border-radius:12px;margin-bottom:24px}.figma-actions{display:flex;gap:24px;align-items:center;flex-wrap:wrap}.reflection-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:28px}.reflection-grid>div{border-top:1px solid var(--line);padding-top:24px}.reflection-grid p{font-size:14px;line-height:1.8;color:var(--muted)}.case-next{padding:65px 0;display:flex;justify-content:space-between;align-items:center;gap:30px}.case-next h2{font-size:32px;font-weight:400;letter-spacing:-1px;margin:0 0 12px}.case-next p{font-size:14px;color:var(--muted);line-height:1.7;max-width:530px}.case-disclaimer{font-size:12px;line-height:1.8;color:var(--muted);padding:20px 0 0}.case-top-tags{display:flex;gap:8px;margin-bottom:0}.case-top-tags span{font-size:10px;border:1px solid var(--line);padding:7px 10px;border-radius:20px}
+@media(max-width:900px){.chapter-grid{gap:38px}.screen-layout{grid-template-columns:1fr;gap:22px}.screen-copy h2{max-width:650px}.observations{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.journey{grid-template-columns:repeat(3,1fr)}.journey li:after{display:none}.case-nav{gap:18px}}
+@media(max-width:600px){.case-intro{padding-top:30px}.back-link{margin-bottom:38px}.case-intro h1{font-size:48px;letter-spacing:-2px}.case-deck{font-size:17px}.case-meta{grid-template-columns:1fr 1fr;gap:24px;margin-top:28px}.case-cover{border-radius:14px}.case-cover figcaption{display:block;padding:13px 17px}.case-cover figcaption span{display:block}.case-nav{gap:16px;font-size:11px;padding:18px 0}.chapter{padding:50px 0;scroll-margin-top:100px}.chapter-grid{grid-template-columns:1fr;gap:18px}.chapter h2{font-size:32px}.case-body p{font-size:15px}.case-body p.lead{font-size:19px}.journey{grid-template-columns:1fr 1fr;gap:10px}.journey li{padding:20px 16px}.observations{grid-template-columns:1fr;gap:0}.screen-layout{gap:23px}.figma-section{padding:18px;border-radius:16px}.figma-actions{gap:20px}.reflection-grid{grid-template-columns:1fr;gap:20px}.case-next{display:block;padding:45px 0}.case-next .button{margin-top:18px}.case-top-tags{flex-wrap:wrap}}
+</style></head><body id="top"><a class="skip" href="#main">Skip to content</a><div class="wrap"><header class="nav"><a class="wordmark" href="index.html" aria-label="Santiago Cardona home"><span class="monogram" aria-hidden="true">s.</span>Santiago Cardona</a><nav class="nav-links" aria-label="Main navigation"><a href="index.html#work">All work</a><a class="nav-contact" href="mailto:santicardonas777@gmail.com">Let’s talk <span aria-hidden="true">↗</span></a></nav></header><main id="main">
+<section class="case-intro" aria-labelledby="case-title"><a class="back-link" href="index.html#work">← Back to selected work</a><p class="eyebrow case-label">CASE STUDY 001 / GAME INTERFACE</p><div class="case-top-tags"><span>PC Game</span><span>UX/UI Design</span><span>Figma</span></div><h1 id="case-title" style="margin-top:24px">Colombia Eléctrica.<br><em>From login to launch.</em></h1><p class="case-deck">Designing the player journey for 2300: Drones Espaciales y Asteroides, from account access to spacecraft preparation.</p><dl class="case-meta"><div><dt>My role</dt><dd>UX/UI Designer</dd></div><div><dt>Design tool</dt><dd>Figma</dd></div><div><dt>My deliverables</dt><dd>Interface mockups &amp; screen sequences</dd></div><div><dt>Implementation</dt><dd>Development team</dd></div></dl></section>
+<figure class="case-cover"><img src="ce-combat.jpg" alt="Spacecraft navigating an asteroid field with the game’s combat interface" width="1306" height="723" fetchpriority="high"><figcaption><span>2300 / PC GAME EXPERIENCE</span><span>Implemented game · original project context</span></figcaption></figure>
+<nav class="case-nav" aria-label="Case study sections"><a href="#overview">Overview</a><a href="#journey">Player journey</a><a href="#access">The screens</a><a href="#figma">Figma documentation</a><a href="#reflection">Reflection</a></nav>
+<section class="chapter" id="overview"><div class="chapter-grid"><div><p class="eyebrow section-number">01 / CONTEXT &amp; CONTRIBUTION</p><h2>A connected journey.<br>A distinct role.</h2></div><div class="case-body"><p class="lead">I designed the game’s interface in Figma and created screen-by-screen mockups for the development team.</p><p>Colombia Eléctrica — 2300 combines a space-themed PC game with a mobile augmented reality experience. This first case study focuses on the PC interface.</p><p>My work covered the sequence from the initial screens and player login to the spacecraft preview and weapon-selection interface. I organized layouts, information, and actions into mockups that developers could use for implementation.</p><p>The development team was responsible for building the game. My contribution to this project was UX/UI design and the Figma handoff.</p><div class="scope-note">The screenshots below show the implemented game. The original Figma file was lost; current design documentation is being recovered from these screens. New interaction proposals are identified separately.</div></div></div></section>
+<section class="chapter" id="journey"><p class="eyebrow section-number">02 / THE PLAYER JOURNEY</p><h2>From getting in<br>to getting ready.</h2><div class="case-body"><p>The interface moves through different tasks: entering credentials, waiting for the system, inspecting the spacecraft, and exploring equipment before a mission.</p></div><ol class="journey"><li><span class="step-number">01</span><h3>Access</h3><p>Enter account credentials.</p></li><li><span class="step-number">02</span><h3>Loading</h3><p>Understand the system’s status.</p></li><li><span class="step-number">03</span><h3>Hangar</h3><p>Inspect the spacecraft.</p></li><li><span class="step-number">04</span><h3>Equipment</h3><p>Explore weapons and attributes.</p></li><li><span class="step-number">05</span><h3>Mission</h3><p>Move into the combat experience.</p></li></ol><p class="case-disclaimer">The sequence is organized from the supplied screens. Exact transitions, timing, and authentication behavior are not established by the screenshots.</p></section>
+<section class="chapter" id="access"><div class="screen-layout"><div class="screen-copy"><p class="eyebrow">03 / ACCESS</p><h2>A focused entry point.</h2><p>The login screen brings the game’s identity, a short instruction, and the credential fields into one central composition.</p><ul class="observations"><li><strong>Identity</strong>Branding and the space environment introduce the game.</li><li><strong>Hierarchy</strong>Instructions, email, and password follow a vertical order.</li><li><strong>Primary action</strong>INICIAR sits below the grouped credential fields.</li></ul></div><div><figure class="screen-figure"><a href="ce-login.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open full-size Login screen with email, password and INICIAR button"><img src="ce-login.jpg" alt="Login screen with email, password and INICIAR button" loading="lazy"></a><figcaption>Implemented interface · select the image to inspect it at full size.</figcaption></figure></div></div></section><section class="chapter" id="loading"><div class="screen-layout"><div class="screen-copy"><p class="eyebrow">04 / SYSTEM FEEDBACK</p><h2>A transition into play.</h2><p>The next screen retains the visual identity while showing connection information, a loading message, and actions to start or exit.</p><ul class="observations"><li><strong>Continuity</strong>The logo and subtitle connect access and loading.</li><li><strong>System feedback</strong>Status text communicates that the system is doing work.</li><li><strong>Available actions</strong>Start and exit controls appear below the message.</li></ul></div><div><figure class="screen-figure"><a href="ce-loading.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open full-size Loading screen with connection status, INICIAR JUEGO and Salir actions"><img src="ce-loading.jpg" alt="Loading screen with connection status, INICIAR JUEGO and Salir actions" loading="lazy"></a><figcaption>Implemented interface · select the image to inspect it at full size.</figcaption></figure><aside class="loading-note">A review opportunity: “Cargando…”, “Connected anonymously…” and an available start action appear together. Their relationship should be clarified when revisiting the states; this capture alone does not establish whether the controls are active.</aside></div></div></section><section class="chapter" id="hangar"><div class="screen-layout"><div class="screen-copy"><p class="eyebrow">05 / SPACECRAFT PREPARATION</p><h2>The vehicle takes center stage.</h2><p>In the hangar, attention shifts from account access to the player’s spacecraft. The preview anchors the composition, with options to choose weapons or start a mission.</p><ul class="observations"><li><strong>Visual focus</strong>The spacecraft is the central element.</li><li><strong>Vehicle information</strong>A supporting panel identifies the selected vehicle.</li><li><strong>Next steps</strong>Equipment and mission actions frame the preparation stage.</li></ul></div><div><figure class="screen-figure"><a href="ce-hangar.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open full-size Orange spacecraft in the hangar with weapon selection and start mission controls"><img src="ce-hangar.jpg" alt="Orange spacecraft in the hangar with weapon selection and start mission controls" loading="lazy"></a><figcaption>Implemented interface · select the image to inspect it at full size.</figcaption></figure></div></div></section><section class="chapter" id="equipment"><div class="screen-layout"><div class="screen-copy"><p class="eyebrow">06 / WEAPON SELECTION</p><h2>Options, context,<br>and detail.</h2><p>Weapon selection brings a catalogue, the spacecraft preview, and equipment information into a single view. Each area has a different role within the preparation task.</p><ul class="observations"><li><strong>Catalogue</strong>The left panel presents the available weapons.</li><li><strong>Context & attributes</strong>The center combines the vehicle with descriptions and statistics.</li><li><strong>Categories & launch</strong>The right side groups weapon categories and the mission action.</li></ul></div><div><figure class="screen-figure"><a href="ce-weapons.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open full-size Weapon selection with catalogue, spacecraft preview and weapon attributes"><img src="ce-weapons.jpg" alt="Weapon selection with catalogue, spacecraft preview and weapon attributes" loading="lazy"></a><figcaption>Implemented interface · select the image to inspect it at full size.</figcaption></figure><aside class="loading-note">The pink arrow may be a tutorial overlay or an annotation added to the capture. It is preserved as part of the source image, not treated as a confirmed interface component.</aside></div></div></section><section class="chapter" id="combat"><div class="screen-layout"><div class="screen-copy"><p class="eyebrow">07 / IN-GAME INTERFACE</p><h2>Information around<br>the action.</h2><p>During combat, the interface shifts toward status and spatial information around the gameplay view. The implemented screen shows how the preparation journey leads into play.</p><ul class="observations"><li><strong>Central action</strong>The reticle sits near the player’s main visual focus.</li><li><strong>Status</strong>Counters, time, and status bars occupy the upper areas.</li><li><strong>Spatial cues</strong>Target markers and the lower radar support orientation.</li></ul></div><div><figure class="screen-figure"><a href="ce-combat.jpg" target="_blank" rel="noopener noreferrer" aria-label="Open full-size Combat HUD with reticle, status bars, enemy markers and radar"><img src="ce-combat.jpg" alt="Combat HUD with reticle, status bars, enemy markers and radar" loading="lazy"></a><figcaption>Implemented interface · select the image to inspect it at full size.</figcaption></figure></div></div></section><section class="chapter" id="figma"><div class="chapter-grid"><div><p class="eyebrow section-number">08 / DESIGN DOCUMENTATION</p><h2>Making the interface<br>editable again.</h2></div><div class="case-body"><p class="lead">The recovered login pilot translates the reference into native Figma text, fields, buttons, and reusable components.</p><p>The pilot includes color and geometry variables, field and button variants, and a visual prototype from login to a connecting state. Additional focus, error, loading, and disabled states are current proposals, not proof of original game behavior.</p><p>The logo remains a raster crop. The background is approximate, and the original font families are still unconfirmed. This material documents the recovery work alongside the existing product.</p></div></div><div class="figma-section"><img src="ce-figma-login.png" alt="Recovered editable login design in Figma" loading="lazy" width="1241" height="607"><div class="figma-actions"><a class="button" href="https://www.figma.com/design/XnHe6GNt0oy7g5xbBlrEnW?node-id=5-2" target="_blank" rel="noopener noreferrer">Open Figma pilot <span aria-hidden="true">↗</span></a><a class="text-link" href="https://www.figma.com/proto/XnHe6GNt0oy7g5xbBlrEnW?node-id=6-16" target="_blank" rel="noopener noreferrer">Explore visual prototype <span aria-hidden="true">↗</span></a></div><p class="note">Recovered design documentation · visual simulation only, without real authentication. Figma access may require sign-in.</p></div></section>
+<section class="chapter" id="reflection"><p class="eyebrow section-number">09 / LOOKING AT THE WORK TODAY</p><h2>A foundation to build on.</h2><div class="reflection-grid"><div><h3>What the project demonstrates</h3><p>My contribution connects screen sequences, visual composition, and mockups prepared for implementation. The implemented game provides context for how those interface tasks fit together.</p></div><div><h3>What I would validate next</h3><p>Clarify connection and loading states, distinguish inspected weapons from equipped weapons, review language consistency, and test the readability of the combat interface in motion.</p></div></div><p class="case-disclaimer">No usability-test results or performance metrics are claimed in this case study. The opportunities above are a present-day review of the available screens.</p></section>
+<section class="case-next"><div><p class="eyebrow section-number">THE PROJECT CONTINUES</p><h2>Next: the mobile AR experience.</h2><p>The mobile screens will be documented in a later iteration, with their own scanning journey and interface context.</p></div><a class="button" href="index.html#work">Back to portfolio <span aria-hidden="true">↗</span></a></section></main><footer><span>© 2026 Santiago Cardona · Design &amp; code.</span><div class="socials"><a href="mailto:santicardonas777@gmail.com">Get in touch ↗</a><a href="#top">Back to top ↑</a></div></footer></div></body></html>
