@@ -199,4 +199,4 @@ footer{flex-wrap:wrap;line-height:1.6}
 function finish(){viewer.close();}
 document.querySelectorAll('.screen-figure a').forEach(link=>{link.removeAttribute('target');link.addEventListener('click',event=>{if(!viewer.showModal||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();trigger=link;image.src=link.href;image.alt=link.querySelector('img').alt;caption.textContent=link.closest('figure').querySelector('figcaption').textContent.replace('open full size ↗','');viewer.showModal();document.documentElement.classList.add('viewer-open');close.focus();});});
 close.addEventListener('click',finish);viewer.addEventListener('click',event=>{if(event.target===viewer)finish();});viewer.addEventListener('close',()=>{document.documentElement.classList.remove('viewer-open');image.removeAttribute('src');if(trigger)trigger.focus();});
-})();</script><script src="language.js?v=default-en-2"></script></body></html>
+})();</script><script src="language.js?v=kubik-1"></script></body></html>
